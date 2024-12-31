@@ -109,7 +109,6 @@
     <section class="container">
         @foreach ($posts as $post)
         <div class="row align-items-center gx-3 gy-5 py-5 mt-5">
-
             <div class="col-12 col-lg-5">
                 <img src="assets/img-1.webp" class="img-fluid mx-auto d-block" alt="a man using vr gadget" />
             </div>
@@ -125,7 +124,6 @@
         </div>
         @endforeach
     </section>
-
     <footer class="footer-section">
         <p class="text-center py-5 mb-0">
             &copy; 2023 TechGear Hub. All rights reserved.
