@@ -11,11 +11,21 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+
+
+     public function dashboard()
+     {
+
+         $posts=Post::all();
+         return view('dashboard',compact('posts'));
+     }
+
     public function index()
     {
         $posts=Post::all();
 
-        return view('posts',compact('posts'));
+        return view('index',compact('posts'));
     }
 
     /**
@@ -32,16 +42,19 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
             'user_id' => 'required|exists:users,id', // Validate the user_id
         ]);
-        $post = new Post();
-        $post->title = $request->title;
-        $post->content = $request->content;
-        $post->user_id = $request->user_id; // Save selected user_id
-        $post->save();
+        Post::create($validated);
+
+
+        // $post = new Post();
+        // $post->title = $request->title;
+        // $post->content = $request->content;
+        // $post->user_id = $request->user_id; // Save selected user_id
+        // $post->save();
         // return redirect()->back()->with('success', 'Post added successfully!');
         return redirect()->back()->with([
             'message' => "تمت العملية بنجاح",
