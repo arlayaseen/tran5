@@ -10,7 +10,8 @@
             </div>
         @endif
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Post</h1>
+        {{-- <h1 class="h3 mb-2 text-gray-800">{{ __('messages.posts') }}</h1> --}}
+        <h1 class="h3 mb-2 text-gray-800">{{ trans('messages.posts') }}</h1>
         <a href="{{ url('/posts/create') }}" class="btn btn-primary btn-icon-split mb-2">
             <span class="icon text-white-50">
                 <i class="fas fa-flag"></i>
@@ -31,6 +32,7 @@
                                 <th>title</th>
                                 <th>content</th>
                                 <th>auth</th>
+                                <th>image</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -39,6 +41,7 @@
                                 <th>title</th>
                                 <th>content</th>
                                 <th>auth</th>
+                                <th>image</th>
                                 <th></th>
                             </tr>
                         </tfoot>
@@ -49,7 +52,16 @@
                                     <td>{{ $post->content }}</td>
                                     <td>{{ $post->user->name }}</td>
                                     <td>
-                                        <div class="d-flex align-items-center gap-2">                                            <a href="{{ url('/posts/edit/' . $post->id) }}"
+                                        @if ($post->image)
+                                            <img src="{{ asset('images/' . $post->image) }}" width="100"
+                                                alt="Post Image">
+                                        @else
+                                            No image
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center gap-2"> <a
+                                                href="{{ url('/posts/edit/' . $post->id) }}"
                                                 class="btn btn-warning btn-circle btn-sm">
                                                 <i class="fas fa-exclamation-triangle"></i>
                                             </a>

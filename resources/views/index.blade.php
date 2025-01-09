@@ -15,7 +15,7 @@
 <body>
     <div class="head-section">
         <nav class="navbar navbar-expand-lg py-4">
-            <div class="container">
+            <div class="container-fluid">
                 <a class="navbar-brand fw-bold" href="#">Techgears</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -81,9 +81,26 @@
 
                         @endguest
                     </ul>
+                    <div>
+                        <form method="get" action="{{ route('change_language') }}">
+                            <select name="lang" onchange="this.form.submit()">
+                                <option value="en" {{ session('locale')== 'en' ? 'selected' : '' }} >English</option>
+                                <option value="ar" {{ session('locale') == 'ar' ? 'selected' : '' }} >العربية</option>
+                            </select>
 
+                        </form>
+
+                    </div>
+                    <ul>
+                        @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                            <div {{ LaravelLocalization::setLocale()==$localeCode?"hidden" :''}}>
+                                <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}" >
+                                    {{ $properties['native'] }}
+                                </a>
+                            </div>
+                        @endforeach
+                    </ul>
                 </div>
-            </div>
         </nav>
 
         <header class="hero-section">

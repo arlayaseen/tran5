@@ -11,7 +11,8 @@
                     <div class="col-lg-7">
                         <div class="p-5">
                             @if (session('message'))
-                                <div class="alert alert-{{ session('alert-type')  }} alert-dismissible fade show" role="alert">
+                                <div class="alert alert-{{ session('alert-type') }} alert-dismissible fade show"
+                                    role="alert">
                                     {{ session('message') }}
 
                                 </div>
@@ -19,7 +20,7 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Add Post</h1>
                             </div>
-                            <form class="user" method="post" action="{{route('posts.store') }}">
+                            <form class="user" method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="form-group">
@@ -30,7 +31,6 @@
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
-
                                 <div class="form-group">
                                     <label for="content">Content of Post</label>
                                     <textarea class="form-control" id="content" name="content" placeholder="Enter the content of the post">{{ old('content') }}</textarea>
@@ -52,7 +52,14 @@
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
-
+                                <div class="form-group">
+                                    <label for="title">Image</label>
+                                    <input type="file" class="form-control" id="image" name="image"
+                                        accept="image/*">
+                                    @error('image')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
                                 <button type="submit" class="btn btn-primary btn-user btn-block">
                                     Add Post
                                 </button>

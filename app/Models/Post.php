@@ -15,10 +15,16 @@ class Post extends Model
         'title',
         'content',
         'user_id',
+        'image'
     ];
 
-
-    public function user(){
-       return $this->belongsTo(User::class);
+    // Scope
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

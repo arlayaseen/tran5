@@ -100,7 +100,7 @@
 
        <!-- Nav Item - Tables -->
        <li class="nav-item">
-           <a class="nav-link" href="{{ route('posts.index') }}">
+           <a class="nav-link" href="{{ route('dashboard') }}">
                <i class="fas fa-fw fa-table"></i>
                <span>Posts</span></a>
        </li>
